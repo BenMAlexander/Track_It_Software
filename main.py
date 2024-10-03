@@ -13,8 +13,8 @@ class TrackIt(tk.Tk):
         self.resizable(False, False)
 
         self.menu = Menu(self)
-        self.singletrack = singleTrack(self)
-        #self.todo = todo_Task(self)
+        #self.singletrack = singleTrack(self)
+        self.todo = todo_Task(self)
 
         self.mainloop()
 
