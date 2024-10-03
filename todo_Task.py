@@ -29,7 +29,7 @@ class todo_Task(ttk.Frame):
             file=relative_to_assets("frame_todo.png"))
     #---Complete Icon Photo---#        
         complete_icon = PhotoImage(
-            file=relative_to_assets("complete_icon_small.png"))
+            file=relative_to_assets("delete_icon_small.png"))
 
 #---Image Placements------------------------------------------------------------------------------#
     #---Background Image Placement---#
@@ -68,12 +68,12 @@ class todo_Task(ttk.Frame):
     #---Scrollable Canvas---#
         self.canvas = tk.Canvas(self, bg="#0d1525", height=400, width=300, highlightthickness=0, background="#181933")
         self.canvas.place(x=405, y=235)
-        self.canvas.configure(yscrollcommand=scrollbar.set)
+        #self.canvas.configure(yscrollcommand=self.scrollbar.set)
         self.canvas.bind_all('<Configure>', lambda e: self.canvas.configure(scrollregion=self.canvas.bbox("all")))
 
      #---Scrollbar---#
-        scrollbar = tk.Scrollbar(self, orient="vertical", command=self.canvas.yview)
-        scrollbar.place(x=705, y=235, height=400)
+        #self.scrollbar = tk.Scrollbar(self, orient="vertical", command=self.canvas.yview)
+        #self.scrollbar.place(x=705, y=235, height=400)
 
     #---Task Frames in Canvas---#
         task_container = tk.Frame(self.canvas, bg="#181933")
@@ -86,7 +86,7 @@ class todo_Task(ttk.Frame):
                 task = self.task_entry.get()
             if task:
                 task_frame = tk.Frame(task_container, bg="#1d2332", pady=5)
-                task_number = len(task_container.winfo_children()) + 1
+                #task_number = len(task_container.winfo_children()) + 1
                 task_label = tk.Label(task_frame, text=task, bg="#1d2332", fg="#ffffff")
                 task_label.pack(side=tk.LEFT, padx=10)
 
