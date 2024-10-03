@@ -30,6 +30,10 @@ class todo_Task(ttk.Frame):
     #---Complete Icon Photo---#        
         complete_icon = PhotoImage(
             file=relative_to_assets("delete_icon_small.png"))
+    #---ToDo Task Photo---#        
+        self.todo_Task_Bg = PhotoImage(
+            file=relative_to_assets("todo_task_bg.png"))        
+
 
 #---Image Placements------------------------------------------------------------------------------#
     #---Background Image Placement---#
@@ -77,7 +81,7 @@ class todo_Task(ttk.Frame):
 
     #---Task Frames in Canvas---#
         task_container = tk.Frame(self.canvas, bg="#181933")
-        self.canvas.create_window((0, 0), window=task_container, anchor="nw")
+        self.canvas.create_window((0, 0), window=task_container, anchor="nw",width=296, height=55)
 
 #---Functions------------------------------------------------------------------------------#
      #---Add Task---#
@@ -85,13 +89,16 @@ class todo_Task(ttk.Frame):
             if not task:
                 task = self.task_entry.get()
             if task:
-                task_frame = tk.Frame(task_container, bg="#1d2332", pady=5)
+                task_frame = tk.Frame(task_container, bg="#171833", pady=5,width=296, height=55)
                 #task_number = len(task_container.winfo_children()) + 1
-                task_label = tk.Label(task_frame, text=task, bg="#1d2332", fg="#ffffff")
-                task_label.pack(side=tk.LEFT, padx=10)
+                task_label = tk.Label(task_frame, text=task, bg="#171833")
+                task_label.pack(side=tk.LEFT, padx=5)
 
                 delete_button = tk.Button(task_frame, image=complete_icon, command=lambda: delete_task(task_frame), bg="#ff6347", fg="#e0194b", font=("Helvetica", 12))
                 delete_button.pack(side=tk.RIGHT, padx=5)
+
+                task_bg = tk.Label(task_container,image=self.todo_Task_Bg, width=296, height=55)
+                task_bg.place()
 
                 task_frame.pack(fill=tk.X, pady=5)
                 self.task_entry.delete(0, tk.END)
