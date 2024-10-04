@@ -4,6 +4,7 @@ from tkinter import ttk
 from assetPath import relative_to_assets
 import tkinter as tk
 from styles import *
+import customtkinter
 
 #TODO -- Design TaskFrames - Better Working Scrolls - Connect to Database
 
@@ -32,7 +33,10 @@ class todo_Task(ttk.Frame):
             file=relative_to_assets("delete_icon_small.png"))
     #---ToDo Task Photo---#        
         self.todo_Task_Bg = PhotoImage(
-            file=relative_to_assets("todo_task_bg.png"))        
+            file=relative_to_assets("todo_task_bg.png"))   
+    #---Complete Task Photo---#        
+        self.complete_task = PhotoImage(
+            file=relative_to_assets("complete_icon_test_blue.png"))      
 
 
 #---Image Placements------------------------------------------------------------------------------#
@@ -70,17 +74,32 @@ class todo_Task(ttk.Frame):
 
 #---Tasks Canvas------------------------------------------------------------------------------#
     #---Scrollable Canvas---#
-        self.canvas = tk.Canvas(self, bg="#0d1525", height=400, width=300, highlightthickness=0, background="#181933")
+        self.canvas = tk.Canvas(
+            self, 
+            bg="#0d1525", 
+            height=400, 
+            width=300, 
+            highlightthickness=0, 
+            background="#181933")
         self.canvas.place(x=405, y=235)
+
         #self.canvas.configure(yscrollcommand=self.scrollbar.set)
         self.canvas.bind_all('<Configure>', lambda e: self.canvas.configure(scrollregion=self.canvas.bbox("all")))
 
      #---Scrollbar---#
-        #self.scrollbar = tk.Scrollbar(self, orient="vertical", command=self.canvas.yview)
-        #self.scrollbar.place(x=705, y=235, height=400)
+        self.scrollbar = tk.Scrollbar(
+            self, 
+            orient="vertical", 
+            command=self.canvas.yview,
+            troughcolor="#0d1525")
+        self.scrollbar.place(x=705, y=235, height=400)
 
     #---Task Frames in Canvas---#
-        task_container = tk.Frame(self.canvas, bg="#181933")
+        task_container = tk.Frame(
+            self.canvas, 
+            bg="#181933", 
+            width=350, 
+            height=60)
         self.canvas.create_window((0, 0), window=task_container, anchor="nw")
 
 #---Functions------------------------------------------------------------------------------#
@@ -89,24 +108,47 @@ class todo_Task(ttk.Frame):
             if not task:
                 task = self.task_entry.get()
             if task:
-                task_frame = tk.Frame(task_container, bg="#171833", pady=5)
-                #task_number = len(task_container.winfo_children()) + 1
-                task_label = tk.Label(task_frame, text=task, bg="#171833",image=self.todo_Task_Bg)
-                task_label.pack(side=tk.LEFT, padx=5)
+                task_frame = tk.Frame(
+                    task_container, 
+                    bg="#171833", 
+                    pady=5, 
+                    width=350, 
+                    height=65)
+            #---Task Frame Background---#    
+                task_bg= tk.Label(
+                    task_frame, 
+                    image=self.todo_Task_Bg,  
+                    bg="#171833")
+                task_bg.place(x=0, y=0)
 
-                delete_button = tk.Button(task_frame, image=complete_icon, command=lambda: delete_task(task_frame), bg="#ff6347", fg="#e0194b", font=("Helvetica", 12))
-                delete_button.pack(side=tk.RIGHT, padx=5)
+            #---Task Text---#
+                task_label = tk.Label(
+                    task_frame, 
+                    text=task, 
+                    fg="white", 
+                    bg="#171833")
+                task_label.place(x=75, y=18)
 
-                #task_bg = tk.Label(task_container,image=self.todo_Task_Bg, width=296, height=55)
-                #task_bg.place()
+            #---Complete Button---#
+                complete_button = tk.Button(
+                    task_frame, 
+                    image=self.complete_task, 
+                    command=lambda: complete_task(task_frame), 
+                    fg="#e0194b",
+                    background="#212443", 
+                    activebackground="#212443",
+                    font=font1, 
+                    relief=FLAT,
+                    borderwidth=0)
+                complete_button.place(x=19, y=17)
 
                 task_frame.pack(fill=tk.X, pady=5)
                 self.task_entry.delete(0, tk.END)
                 self.canvas.update_idletasks()
                 self.canvas.configure(scrollregion=self.canvas.bbox("all")) 
 
-    #---Delete Task---#
-        def delete_task(task_frame):
+    #---Complete Task---#
+        def complete_task(task_frame):
             task_frame.destroy()
 
 
