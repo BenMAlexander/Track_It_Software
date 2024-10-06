@@ -8,12 +8,11 @@ class FedExStatus():
         super().__init__()
 
         self.fedex_info()
-
 #---------------------------------------------------------------------------------#
+
    def fedex_info(self):
         id = ShipmentsDict[0]
         status=tk.StringVar()
-#TODO -- Add this to server to grab---------------------------------------------------------------------------------#
     #---Authorization---#            
         secretKey = "34beb5df32e246fb8e143a990495a3b6" 
         publicKey = "l7807fd372290045a6b50466423b3a7b14"
@@ -39,6 +38,7 @@ class FedExStatus():
         
     #---Retrieve JSON Response---#            
         trackingResponse = requests.request("POST",url = TrackURL,data = json.dumps(TrackBody), headers = TrackHeader)
+
     #---Convert JSON to String---#            
         trackInfo = (str(trackingResponse.text))
  
@@ -46,6 +46,7 @@ class FedExStatus():
         for key in list(FedExStatusId):
             if key in trackInfo:
                 status = f'{FedExStatusId[key]}'
+                
     #---Add Status to Dict---#            
         ShipmentStatusDict.update({0:status})                
          

@@ -1,6 +1,6 @@
-
 from pathlib import Path
 
+#---Set File Path------------------------------------------------------------------------------#
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets/frame0")
 

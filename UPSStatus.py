@@ -8,8 +8,8 @@ class UPSStatus():
         super().__init__()
 
         self.ups_info()
-
 #---------------------------------------------------------------------------------#
+
     def ups_info(self):
         id = ShipmentsDict[0]
         status=tk.StringVar()
@@ -38,6 +38,7 @@ class UPSStatus():
 
     #---Retrieve JSON Response---#            
         response = requests.get(url, headers = headers, params = query)
+
     #---Convert JSON to String---#            
         trackInfo = (str(response.json()))
         latestStatus = trackInfo[0 :900]
