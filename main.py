@@ -6,6 +6,9 @@ from styles import *
 from frame_single_track import Frame1
 from frame_todo_list import Frame2
 
+'''This is the main class of the app. The main class host the frames in the GUI. 
+   This class also sets the intial frame for viewing when opened and diplays the frames'''
+
 class MainApp(tk.Tk):
     def __init__(self):
         super().__init__()

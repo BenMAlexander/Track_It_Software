@@ -1,7 +1,6 @@
-import tkinter
-from tkinter import *
-from tkinter import ttk 
-
+''' 
+These are font styles that are used throughout the program.
+'''
 
 #---Fonts------------------------------------------------------------------------------#
 font1=("nunito",12,"normal")

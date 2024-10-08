@@ -4,6 +4,10 @@ from FedExStatus import FedExStatus
 from UPSStatus import UPSStatus
 from variables import *
 
+''' The CarrierService Class sort the input to determine the Carrier of the input. 
+   Once sorted it will call either the UPSStatus Class or FedExStatus Class. If the 
+   entry does not fit the criteria, it will display the error.'''
+
 
 class CarrierService():
     def __init__(self):

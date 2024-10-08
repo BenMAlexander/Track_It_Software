@@ -2,8 +2,11 @@ import tkinter as tk
 import tkinter
 from tkinter.ttk import *
 from tkinter import *
-from AssetPath import relative_to_assets
+from assetPath import relative_to_assets
 from styles import *
+
+'''The Frame2 Class is the GUI set up for the To Do Task
+   section of the software.'''
 
 
 class Frame2(Frame):

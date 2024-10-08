@@ -3,6 +3,10 @@ import tkinter as tk
 import requests
 import json
 
+'''The UPSStatus class gets permission to access the API, 
+   request information from the API, Retrieves and pushes 
+   out the Status of the requested tracking number.'''
+
 class UPSStatus():
     def __init__(self):
         super().__init__()

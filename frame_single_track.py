@@ -4,9 +4,12 @@ import tkinter
 from tkinter.ttk import *
 from tkinter import *
 from CarrierService import CarrierService
-from AssetPath import relative_to_assets
+from assetPath import relative_to_assets
 from styles import *
 from variables import *
+
+'''Frame1 Class is the GUI section for the Shipment Tracking
+   Section of this sofware.'''
 
 class Frame1(ttk.Frame):
     def __init__(self, parent, controller):

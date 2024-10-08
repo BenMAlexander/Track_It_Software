@@ -3,6 +3,10 @@ import requests
 import tkinter as tk 
 from variables import *
 
+'''The FedExStatus class gets permission to access the API, 
+   request information from the API, Retrieves and pushes 
+   out the Status of the requested tracking number.'''
+
 class FedExStatus():
    def __init__(self):
         super().__init__()
